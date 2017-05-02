@@ -1,0 +1,18 @@
+{% extends "index.html" %}
+{% block content %}
+<link href="/css/style.css" rel="stylesheet">
+
+<div class="row">
+        <div class="col-xs-12 text-center page-header">
+<div>
+<h1>{{ article.titre }}</h1>
+<h2>par {{ article.auteur }}</h2>
+<pre style="text-align: -webkit-left;text-align: left;">
+{{ article.texte }}
+</pre>
+<div> date de publication : {{ article.mydate }}</div>
+
+</div>
+</div>
+</div>
+{% endblock %}

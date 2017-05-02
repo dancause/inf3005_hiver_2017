@@ -1,0 +1,35 @@
+{% extends "index.html" %}
+{% block content %}
+<link href="/css/style.css" rel="stylesheet">
+<form action="/valider" method="post">
+		<div class="form-group">
+		
+                    <label for="courriel">courriel :</label>
+                    <input  type="text" id="courriel" name="courriel" size="40" class="form-control" value="{{courriel}}" >
+                    {% if erreur_data %}
+                    <div class="erreur">{{erreur_data}}</div>
+                    {% endif %}
+                </div>
+                
+                <div class="form-group">
+                    <label for="motpasse">mot de passe :</label>
+                    <input  type="password" id="url" name="motpasse" size="40" class="form-control" value="{{motpasse}}" >
+                    {% if erreur_data %}
+                    <div class="erreur">{{erreur_data}}</div>
+                    {% endif %}
+                    <div class="erreur">{{message}}</div>
+                </div>
+                
+                <div class="form-group">
+                  <input type=reset value='annuler' type="button" class="btn btn-primary">
+                  <input type=submit value='OK' type="button" class="btn btn-primary">
+                </div>
+</form>
+
+<form action="/oublie" methode="post">
+<div class="form-group">
+<input type=submit value='mot de passe oublié' type="button" class="btn btn-primary">
+</div>
+</form>
+
+{% endblock %}

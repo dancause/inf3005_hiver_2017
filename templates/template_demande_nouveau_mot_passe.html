@@ -1,0 +1,24 @@
+{% extends "index.html" %}
+{% block content %}
+<div>
+  <h3>Invitation</h3>
+  <div>
+  
+<form action="/demande_reinitialisation_motpasse" method="post">
+				<div class="form-group">
+                    <label for="courriel">courriel :</label>
+                    <input  type="text" id="courriel" name="courriel" size="40" class="form-control" >
+				</div>     
+				{% if data %}
+                    <div class="erreur">{{data}}</div>
+                    {% endif %}             
+                <div class="form-group">
+                  <input type=reset value='annuler' type="button" class="btn btn-primary">
+                  <input type=submit value='OK' type="button" class="btn btn-primary">
+                </div>
+</form>
+
+  </div>
+  </div>
+  
+  {% endblock %}

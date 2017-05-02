@@ -1,0 +1,61 @@
+{% extends "index.html" %}
+{% block content %}
+<script src="/vendor/jquery/jquery.js"></script>
+<script src="/vendor/jquery/jquery-ui.js"></script>
+<script src="/vendor/jquery/jquery.cookie.js"></script>
+<script src="/js/cms.js"></script>
+<link href="/css/style.css" rel="stylesheet">
+
+<form action="/creationusager" method="post">
+				<input  type="hidden" id="token" name="token" size="40" class="form-control" value="{{token}}">
+                    
+				<div class="form-group">
+                    <label for="token2">Token:</label>
+                    <input  type="text" id="token2" name="token2" size="40" class="form-control" value="{{ token }}" disabled >
+				</div> 
+				<div class="form-group">
+                    <label for="nom">Nom :</label>
+                    <input  type="text" id="nom" name="nom" size="40" class="form-control" value="{{name}}" >
+				</div>  
+					{% if erreur_data %}
+                    <div class="erreur">{{erreur_data.nom}}</div>
+                    {% endif %}  
+				<div class="form-group">
+                    <label for="courriel">courriel :</label>
+                    <input  type="email" id="courriel" name="courriel" size="40" class="form-control" value="{{courriel}}" >
+				</div> 
+  
+				{% if erreur_data %}
+                    <div class="erreur">{{erreur_data.courriel}}</div>
+                    {% endif %}
+                    
+                   <div class="form-group">
+                    <label for="motpass">mot de passe :</label>
+                    <input  type="password" id="motpasse" name="motpasse" size="40" class="form-control" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}">
+				</div> 
+  
+				{% if erreur_data %}
+                    <div class="erreur">{{erreur_data.motpasse}}</div>
+                    {% endif %}  
+                    <div class="form-group">
+                    <label for="motpass2">vérification mot de passe :</label>
+                    <input  type="password" id="motpasse2" name="motpasse2" size="40" class="form-control" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" >
+				</div> 
+  
+				{% if erreur_data %}
+                    <div class="erreur">{{erreur_data.motpasse2}}</div>
+                    {% endif %}                
+                <div class="form-group">
+                  <input type=reset value='annuler' type="button" class="btn btn-primary">
+                  <input type=submit value='OK' type="button" class="btn btn-primary">
+                </div>
+</form>
+
+    <table> 
+    {% for elem in erreurs %}
+    <tr><td class="erreur">{{elem}}</td><tr>
+    {% endfor %}   
+    </table>   
+             
+
+{% endblock %}

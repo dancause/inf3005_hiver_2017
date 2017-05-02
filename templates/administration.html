@@ -1,0 +1,113 @@
+{% extends "index.html" %}
+{% block content %}
+<link  href="/vendor/css/jquery-ui.css" rel="stylesheet">
+<link href="/css/style.css" rel="stylesheet">
+<script src="/vendor/jquery/jquery.js"></script>
+<script src="/vendor/jquery/jquery-ui.js"></script>
+<script src="/js/cms.js"></script>
+
+
+<div id="accordion">
+  <h3>Gestion des articles</h3>
+  
+  <div>
+   <div class="row">
+        <div class="col-xs-12 col-md-12 text-center">
+          {% if not titre_page %}
+   <h1>Titre par défaut</h1>
+  			{% else %}
+ 	<h1>{{ titre_page }}</h1>
+  		{% endif %}
+    <table class="table table-hover table-responsive liste_articles">
+    <thead>
+    	<tr>
+        <th>Numéro</th>
+    	<th>titre</th>
+    	<th>date</th>
+    	<th>auteur</th>
+    	  {% if admin %}
+		<th>modifier</th>
+		<th>effacer</th>
+    	{% endif %}
+    	</tr>
+    	</thead>
+    	 {% if not articles %}
+
+    	 <tr>
+    	<td COLSPAN={% if admin %}6{% else %}4{% endif %} style="text-align: center;"><h2>aucun résultat</h2></td>
+    	</tr>
+    	 {% else %}
+				{% for p in articles %}
+                    <td>{{ p.unique }}</td>
+    				<td><a href="/article/{{ p.url }}">{{ p.titre }}<a></td>
+    				<td>{{ p.mydate }}</td>
+    				<td>{{ p.auteur }}</td>
+   				{% if admin %}
+					<td><a href="/mise_a_jour/{{ p.url }}">&#9998;<a></td>
+					<td><a href="/delete/{{ p.unique }}">X<a></td>
+    			{% endif %}
+    			</tr>
+    			{% endfor %}
+    		{% endif %}
+    </table>
+    
+    {% if admin %}
+    <div>
+    <form action="/admin-nouveau">
+    <input type=submit value='ajouter' type="button" class="btn btn-primary">
+    </form>
+    </div>
+    {% endif %}
+
+</div></div>
+  <div>
+  <h3>Invitation</h3>
+  <div>
+  
+<form action="/invitation" method="post">
+				<div class="form-group">
+                    <label for="courriel">courriel :</label>
+                    <input  type="text" id="courriel" name="courriel" size="40" class="form-control" >
+				</div>     
+				{% if erreur_data %}
+                    <div class="erreur">{{erreur_data.erreur}}</div>
+                    {% endif %}             
+                <div class="form-group">
+                  <input type=reset value='annuler' type="button" class="btn btn-primary">
+                  <input type=submit value='OK' type="button" class="btn btn-primary">
+                </div>
+</form>
+
+  </div>
+  </div>
+  <h3>Gestion comptes</h3>
+  <div>
+    <p>
+    Nam enim risus, molestie et, porta ac, aliquam ac, risus. Quisque lobortis.
+    Phasellus pellentesque purus in massa. Aenean in pede. Phasellus ac libero
+    ac tellus pellentesque semper. Sed ac felis. Sed commodo, magna quis
+    lacinia ornare, quam ante aliquam nisi, eu iaculis leo purus venenatis dui.
+    </p>
+    <ul>
+      <li>List item one</li>
+      <li>List item two</li>
+      <li>List item three</li>
+    </ul>
+  </div>
+  <h3>Section 4</h3>
+  <div>
+    <p>
+    Cras dictum. Pellentesque habitant morbi tristique senectus et netus
+    et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in
+    faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia
+    mauris vel est.
+    </p>
+    <p>
+    Suspendisse eu nisl. Nullam ut libero. Integer dignissim consequat lectus.
+    Class aptent taciti sociosqu ad litora torquent per conubia nostra, per
+    inceptos himenaeos.
+    </p>
+  </div>
+</div>
+
+{% endblock %}

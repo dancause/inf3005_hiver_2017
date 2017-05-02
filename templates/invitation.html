@@ -1,0 +1,43 @@
+{% extends "index.html" %}
+{% block content %}
+<link href="/css/style.css" rel="stylesheet">
+<form action="/creationusager" method="post">
+				<div class="form-group">
+                    <label for="courriel">Nom :</label>
+                    <input  type="text" id="courriel" name="courriel" size="40" class="form-control" >
+				</div>  
+					{% if erreur_data %}
+                    <div class="erreur">{{erreur_data.nom}}</div>
+                    {% endif %}  
+				<div class="form-group">
+                    <label for="courriel">courriel :</label>
+                    <input  type="text" id="courriel" name="courriel" size="40" class="form-control" >
+				</div> 
+  
+				{% if erreur_data %}
+                    <div class="erreur">{{erreur_data.courriel}}</div>
+                    {% endif %}
+                    
+                   <div class="form-group">
+                    <label for="courriel">mot de passe :</label>
+                    <input  type="password" id="motpasse" name="courriel" size="40" class="form-control" >
+				</div> 
+  
+				{% if erreur_data %}
+                    <div class="erreur">{{erreur_data.motpasse}}</div>
+                    {% endif %}  
+                    <div class="form-group">
+                    <label for="courriel">vérification mot de passe :</label>
+                    <input  type="password" id="motpasse" name="courriel" size="40" class="form-control" >
+				</div> 
+  
+				{% if erreur_data %}
+                    <div class="erreur">{{erreur_data.motpassel}}</div>
+                    {% endif %}                
+                <div class="form-group">
+                  <input type=reset value='annuler' type="button" class="btn btn-primary">
+                  <input type=submit value='OK' type="button" class="btn btn-primary">
+                </div>
+</form>
+
+{% endblock %}

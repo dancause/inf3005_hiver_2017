@@ -1,0 +1,12 @@
+Pour l'envoie de courriel on a besoin de les ajouter 
+dans le fichier -> info_courriel.txt
+
+
+la première ligne du fichier doit être le courriel et la seconde le mot de passe
+le fichier doit être placer dans le même répertoire que le fichier python courriel.py
+
+ex:
+mon_courriel@gmail.com
+mon_mot_de_passe
+
+

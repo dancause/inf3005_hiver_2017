@@ -1,0 +1,82 @@
+{% extends "index.html" %}
+{% block content %}
+
+<link  href="/vendor/css/jquery-ui.css" rel="stylesheet">
+<link href="/css/style.css" rel="stylesheet">
+<script src="/vendor/jquery/jquery.js"></script>
+<script src="/vendor/jquery/jquery-ui.js"></script>
+<script src="/js/cms.js"></script>
+
+
+<div class="row">
+    <div class="col-xs-12 text-center page-header">
+
+
+{% if mise_a_jour %}
+<h1>Mise à jour d'article</h1>
+{% else %}
+<h1>Nouvel article</h1>
+{% endif %}
+
+
+        <form action={% if mise_a_jour %}"/mise_a_jour"{% else %}"/ajouter"{% endif %}  method="POST">
+                 <div class="form-group">
+                 <label for="titre">Titre :</label>
+                <input type="titre" id="titre" name="titre" size="40" required class="form-control" onchange="functionurl()" value="{% if articles %}{{articles.titre}}{% endif %}">
+                    {% if erreur_data %}
+                    <div class="erreur">{{erreur_data.titre}}</div>
+                    {% endif %}
+                </div>
+{% if mise_a_jour %} 
+             <p></p>
+{% else %}
+                 <div class="form-group">
+                    <label for="url">url :</label>
+                    <div id="url_tag">
+                    <input  type="text" id="url" name="url" size="40" required class="form-control" onchange="valider_url()" value="{% if articles %}{{articles.url}}{% endif %}">
+                    {% if erreur_data %}
+                    <div class="erreur">{{erreur_data.url}}</div>
+                    {% endif %}
+                    </div>
+                </div>
+                
+                 <div class="form-group">
+                    <label for="auteur">auteur :</label>
+                    <input  type="auteur" id="auteur" name="auteur" required size="40" class="form-control" value={% if articles %}"{{articles.auteur}}"{% endif %}>
+                    {% if erreur_data %}
+                    <div class="erreur">{{erreur_data.auteur}}</div>
+                    {% endif %}
+                    </div>
+
+                 <div class="form-group">
+                <label for="mydate">AAAA-MM-JJ date:</label>
+                <input type="text" id="mydate" name="mydate" size="40" required placeholder="AAAA-MM-JJ"class="form-control" value={% if articles %}"{{articles.mydate}}"{% endif %}>
+                {% if erreur_data %}
+                <div class="erreur">{{erreur_data.mydate}}</div>
+                {% endif %}
+                </div>
+{% endif %}
+                 <div class="form-group">
+                    <label for="texte">article :</label>
+                    <textarea name="texte" id="texte" rows="10" cols="50" required class="form-control" >{% if articles %}{{articles.texte}}{% endif %}</textarea>
+                    {% if erreur_data %}
+                    <div class="erreur">{{erreur_data.texte}}</div>
+                    {% endif %}
+                    </div>
+
+                 <div class="form-group">
+                  <input type=reset value='annuler' type="button" class="btn btn-primary">
+                  {% if not mise_a_jour %}
+                  <input type=submit value='créer' type="button" class="btn btn-primary">
+                  {% else %}
+                   <input type=submit value='mise à jour' type="button" class="btn btn-primary">
+                    {% endif %}
+                </div>
+
+    <input type="hidden" name='id' value="{% if articles %}{{articles.unique}}{% endif %}">
+
+        </form>
+    </div>
+</div>
+
+{% endblock %}

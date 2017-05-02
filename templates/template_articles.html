@@ -1,0 +1,38 @@
+{% extends "index.html" %}
+{% block content %}
+<link href="/css/style.css" rel="stylesheet">
+
+<div class="row">
+<div class="col-xs-12 text-center page-header">
+
+{% if titre_page %}
+<h1>{{titre_page}}</h1>
+{% else %}
+<h1>titre par défaut</h1>
+{% endif %}
+
+
+{% if not articles %}
+
+<h1>Il n'y a aucun article dans la base de données</h1>
+
+{% else %}
+
+{% for p in articles %} 
+<div>
+<h1>{{ p.titre }}</h1>
+<h2>par {{ p.auteur }}</h2>
+<pre style="text-align: -webkit-left;text-align: left;">
+{{ p.texte }}
+</pre>
+<div> date de publication : {{ p.mydate }}</div>
+
+</div>
+{% endfor %} 
+
+{% endif %}
+
+
+</div>
+</div>
+{% endblock %}
